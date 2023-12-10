@@ -1,0 +1,243 @@
+:root {
+  --primary-color: #040449;
+  --dark-color: #222;
+  --light-color: #eee;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: var(--light-color);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+#main {
+  width: 80%;
+  margin: 3rem auto;
+  display: flex;
+  gap: 3rem;
+  max-height: 80vh;
+  height: 80vh;
+}
+
+#canvas-container {
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#canvas {
+  position: relative;
+  width: 80%;
+  height: 100%;
+  max-width: 80%;
+  background: var(--primary-color);
+  border-radius: 20px;
+  overflow: hidden;
+}
+#editor-container {
+  flex: 1 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.font-selector {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.font-heading {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  width: 80%;
+  max-width: 80%;
+  max-height: 1.5rem;
+  text-wrap: nowrap;
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.fonts {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  overflow-y: scroll;
+  display: flex;
+  background: white;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  height: 0px;
+  transition: all 0.4s;
+  z-index: -3;
+  opacity: 0;
+}
+
+.fonts > span {
+  transition: all 0.4s;
+  text-align: center;
+  cursor: pointer;
+  padding: 1rem;
+  overflow: hidden;
+  text-wrap: nowrap;
+  min-height: 1.5rem;
+}
+
+.fonts > span:hover {
+  background: #b6b6b6 !important;
+}
+
+.fonts.show {
+  opacity: 1;
+  height: 10rem;
+  z-index: 10;
+}
+
+#font-size {
+  border: 2px solid var(--primary-color);
+  min-width: 10rem;
+  outline: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #222;
+  border-radius: 10px;
+}
+
+#add-text {
+  padding: 1rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  height: max-content;
+  color: white;
+  background: var(--primary-color);
+  font-size: 1rem;
+  transition: all 0.4s;
+  border: 2px solid transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+#add-text:hover {
+  border-color: var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.font-color,
+.canvas-color {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+input[type="color"] {
+  transition: all 0.4s;
+  width: 65%;
+  height: 3rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.textbox {
+  position: absolute;
+  outline: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  background: transparent;
+  border-radius: 5px;
+  color: white;
+  border: 1px solid transparent;
+}
+
+.textbox:focus {
+  border: 1px dashed white;
+}
+
+.preload {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.5s;
+  z-index: 100;
+}
+
+.right-rect {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  background: #222;
+  border-left: 4px solid orangered;
+}
+
+.left-rect {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  background: #131313;
+  border-right: 4px solid orangered;
+}
+
+.circle {
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background: #222;
+  border: 1rem orangered solid;
+  left: -5rem;
+  top: 36%;
+  display: grid;
+  place-content: center;
+}
+
+.circle > span {
+  font-size: 2rem;
+  color: orangered;
+}
+
+.preload {
+  transition: 2s;
+}
+
+.preload.loaded {
+  z-index: -1;
+}
+
+.preload > * {
+  transition: 1.5s;
+}
+
+.preload.loaded > .right-rect {
+  transition-delay: 300ms;
+  transform: translateX(115%);
+}
+
+.preload.loaded > .left-rect {
+  transition-delay: 300ms;
+  transform: translateX(-100%);
+}
